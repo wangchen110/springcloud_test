@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: springcloud-zuul
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 10000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6060/eureka
+    fetch-registry: true #获取微服务注册表，用于feign或zuul
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+zuul:
+#  ignored-services: '*' # 表示我们忽略所有默认匹配的path
+  prefix: /api
+  routes:
+    order-service:
+      path: /os/**
+      serviceId: order-service
+      strip-prefix: true
+    aaaaa:
+      path: /aaaaa/**
+      serviceId: aaaaa
+      strip-prefix: true
+
+#zuul:
+#  routes: #路由
+#    order:
+#      serviceId: order-service
+#      path: /order_service/**
+#      strip-prefix: false
+
+#  ignored-services: '*'  #？
+#    user:
+#      serviceId: user-service
+#      path: /user_service/**
+#  prefix: /api
+

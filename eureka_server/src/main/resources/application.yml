@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6060/eureka
+    fetch-registry: false #不从注册中心拉取注册表
+
+spring:
+  application:
+    name: aaaaa

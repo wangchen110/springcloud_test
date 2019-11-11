@@ -1,0 +1,19 @@
+server:
+  port: 6060
+
+spring:
+  application:
+    name: user-server
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false #不将自己注册到注册中心
+    fetch-registry: false   #不从注册中心拉取注册表
+    service-url:
+      defaultZone: http://localhost:6060/eureka
+  server:
+    eviction-interval-timer-in-ms: 2000   #表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance
+    enable-self-preservation: false  #禁用自我保护模式  （所谓自我保护模式，就是当EurekaServer节点在短时间内丢失过多客户端时，认为是网络故障引起的，从而暂不移除这些微服务的注册信息）
+
